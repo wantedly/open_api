@@ -10,6 +10,7 @@ require "open_api/paths"
 require "open_api/path_item"
 require "open_api/operation"
 require "open_api/responses"
+require "open_api/response"
 
 module OpenApi
 end
