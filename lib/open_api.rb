@@ -13,6 +13,7 @@ require "open_api/responses"
 require "open_api/response"
 require "open_api/media_type"
 require "open_api/components"
+require "open_api/schema"
 
 module OpenApi
 end
