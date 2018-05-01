@@ -11,6 +11,7 @@ require "open_api/path_item"
 require "open_api/operation"
 require "open_api/responses"
 require "open_api/response"
+require "open_api/media_type"
 
 module OpenApi
 end
