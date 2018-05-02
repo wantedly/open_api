@@ -16,6 +16,7 @@ require "open_api/components"
 require "open_api/schema"
 require "open_api/reference"
 require "open_api/parameter"
+require "open_api/request_body"
 
 module OpenApi
 end
