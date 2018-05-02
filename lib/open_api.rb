@@ -15,6 +15,7 @@ require "open_api/media_type"
 require "open_api/components"
 require "open_api/schema"
 require "open_api/reference"
+require "open_api/parameter"
 
 module OpenApi
 end
