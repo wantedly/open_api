@@ -1,5 +1,7 @@
 module OpenApi
   class Operation
+    prepend EquatableAsContent
+
     attr_accessor :tags, :summary, :description, :external_docs, :operation_id, :parameters, :request_body, :responses, :callbacks, :deprecated, :security, :servers
 
     def initialize(responses:, tags: nil, summary: nil, description: nil, external_docs: nil, operation_id: nil, parameters: nil, request_body: nil, callbacks: nil, deprecated: nil, security: nil, servers: nil)

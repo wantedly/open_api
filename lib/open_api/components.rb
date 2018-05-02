@@ -1,5 +1,7 @@
 module OpenApi
   class Components
+    prepend EquatableAsContent
+
     attr_accessor :schemas, :responses, :parameters, :examples, :request_bodies, :headers, :security_schemes, :links, :callbacks
 
     def initialize(schemas: nil, responses: nil, parameters: nil, examples: nil, request_bodies: nil, headers: nil, security_schemes: nil, links: nil, callbacks: nil)

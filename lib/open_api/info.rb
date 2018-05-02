@@ -1,6 +1,8 @@
 module OpenApi
   # https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.1.md#info-object
   class Info
+    prepend EquatableAsContent
+
     attr_accessor :title, :description, :terms_of_service, :contact, :license, :version
 
     def initialize(title:, description: nil, terms_of_service: nil, contact: nil, license: nil, version:)

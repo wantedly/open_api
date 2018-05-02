@@ -1,6 +1,8 @@
 module OpenApi
   # https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.1.md#oasObject
   class Specification
+    prepend EquatableAsContent
+
     attr_accessor :openapi, :info, :servers, :paths, :components, :security, :tags, :external_docs
 
     def initialize(openapi:, info:, servers: nil, paths:, components: nil, security: nil, tags: nil, external_docs: nil)

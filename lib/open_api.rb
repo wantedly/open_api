@@ -4,6 +4,7 @@ require "active_support/core_ext/hash"
 require "active_support/core_ext/string/inflections"
 
 # open_api/*
+require "open_api/equatable_as_content"
 require "open_api/version"
 
 # Models
