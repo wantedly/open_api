@@ -3,6 +3,7 @@ require "active_support"
 require "active_support/core_ext/hash"
 
 # open_api/*
+require "open_api/equatable_as_content"
 require "open_api/version"
 require "open_api/specification"
 require "open_api/info"

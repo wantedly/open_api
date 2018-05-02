@@ -1,5 +1,7 @@
 module OpenApi
   class RequestBody
+    prepend EquatableAsContent
+
     attr_accessor :description, :content, :required
 
     def initialize(description: nil, content:, required: false)

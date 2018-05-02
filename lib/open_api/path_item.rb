@@ -1,6 +1,8 @@
 module OpenApi
   # https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.1.md#path-item-object
   class PathItem
+    prepend EquatableAsContent
+
     attr_accessor :ref, :summary, :description, :servers, :parameters, :operations
 
     OPERATION_NAMES = [:get, :put, :post, :delete, :options, :head, :patch, :trace]
