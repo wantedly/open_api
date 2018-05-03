@@ -1,5 +1,6 @@
 require 'yaml'
 require 'open_api/serializers/yaml_serializer/specification_serializer'
+require 'open_api/serializers/yaml_serializer/info_serializer'
 
 module OpenApi
   module Serializers
