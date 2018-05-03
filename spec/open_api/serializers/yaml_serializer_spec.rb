@@ -36,9 +36,13 @@ RSpec.describe OpenApi::Serializers::YamlSerializer do
       )
     end
 
-    it "serialize spec" do
-      is_expected.to eq <<-EOL
-      EOL
+    it "serializes spec" do
+      is_expected.to eq <<~YAML
+      ---
+      openapi: 3.0.1
+      info: TODO
+      paths: TODO
+      YAML
     end
   end
 end

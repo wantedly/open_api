@@ -1,10 +1,10 @@
 RSpec.describe OpenApi::Serializers::YamlSerializer::SpecificationSerializer do
-  describe "#serialize" do
-    subject { serializer.serialize(spec) }
+  describe "#serializable_hash" do
+    subject { serializer.serializable_hash(spec) }
 
     let(:serializer) do
       dummy_serializer = double(:dummy_serializer)
-      allow(dummy_serializer).to receive(:serialize).and_return("dummy string")
+      allow(dummy_serializer).to receive(:serializable_hash).and_return("dummy string")
 
       described_class.new(
 				info_serializer: dummy_serializer,
@@ -27,19 +27,18 @@ RSpec.describe OpenApi::Serializers::YamlSerializer::SpecificationSerializer do
       )
     end
 
-    it "serializes info object" do
-      is_expected.to eq <<~EOL
-      ---
-      openapi: 3.0.1
-      info: dummy string
-      paths: dummy string
-      components: dummy string
-      security:
-      - dummy string
-      tags:
-      - dummy string
-      externalDocs: dummy string
-      EOL
+    it "returns serializable hash" do
+      is_expected.to eq(
+        {
+          "openapi" => "3.0.1",
+          "info" => "dummy string",
+          "paths" => "dummy string",
+          "components" => "dummy string",
+          "security" => ["dummy string"],
+          "tags" => ["dummy string"],
+          "externalDocs" => "dummy string",
+        }
+      )
     end
   end
 

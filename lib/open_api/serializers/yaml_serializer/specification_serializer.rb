@@ -13,8 +13,20 @@ module OpenApi
           self.external_documentation_serializer = external_documentation_serializer
         end
 
-        def serialize(specification)
-          YAML.dump(serializable_hash(specification))
+        def serializable_hash(specification)
+          return nil unless specification
+
+          {
+            "openapi" => specification.openapi.to_s,
+            "info" => info_serializer.serializable_hash(specification.info),
+            "paths" => paths_serializer.serializable_hash(specification.paths),
+            "components" => components_serializer.serializable_hash(specification.components),
+            "security" => specification.security&.map { |security_requirement|
+              security_requirement_serializer.serializable_hash(security_requirement)
+            },
+            "tags" => specification.tags&.map { |tag| tag_serializer.serializable_hash(tag) },
+            "externalDocs" => external_documentation_serializer.serializable_hash(specification.external_docs),
+          }.compact
         end
 
         def deserialize(string)
@@ -30,20 +42,6 @@ module OpenApi
             tags: hash["tags"]&.map { |tag| tag_serializer.deserialize(tag) },
             external_docs: external_documentation_serializer.deserialize(hash["externalDocs"]),
           )
-        end
-
-        def serializable_hash(specification)
-          {
-            "openapi" => specification.openapi.to_s,
-            "info" => info_serializer.serialize(specification.info),
-            "paths" => paths_serializer.serialize(specification.paths),
-            "components" => components_serializer.serialize(specification.components),
-            "security" => specification.security.map { |security_requirement|
-              security_requirement_serializer.serialize(security_requirement)
-            },
-            "tags" => specification.tags.map { |tag| tag_serializer.serialize(tag) },
-            "externalDocs" => external_documentation_serializer.serialize(specification.external_docs),
-          }.compact
         end
       end
     end

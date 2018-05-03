@@ -1,16 +1,14 @@
 RSpec.describe OpenApi::Serializers::YamlSerializer::InfoSerializer do
-  describe "#serialize" do
-    subject { serializer.serialize(info) }
+  describe "#serializable_hash" do
+    subject { serializer.serializable_hash(info) }
 
     let(:serializer) do
-      contact_serializer = double(:contact_serializer)
-      allow(contact_serializer).to receive(:serialize).and_return("dummy contact")
-      license_serializer = double(:license_serializer)
-      allow(license_serializer).to receive(:serialize).and_return("dummy license")
+      dummy_serializer = double(:dummy_serializer)
+      allow(dummy_serializer).to receive(:serialize).and_return("dummy string")
 
       described_class.new(
-        contact_serializer: contact_serializer,
-        license_serializer: license_serializer
+        contact_serializer: dummy_serializer,
+        license_serializer: dummy_serializer
       )
     end
     let(:info) do
@@ -26,14 +24,15 @@ RSpec.describe OpenApi::Serializers::YamlSerializer::InfoSerializer do
     let(:license) { double(:license) }
 
     it "serialize info object" do
-      is_expected.to eq <<~YAML
-      ---
-      title: Awesome API
-      termsOfService: ToS
-      contact: dummy contact
-      license: dummy license
-      version: 1.0.0
-      YAML
+      is_expected.to eq(
+        {
+          "title" => "Awesome API",
+          "termsOfService" => "ToS",
+          "contact" => "dummy string",
+          "license" => "dummy string",
+          "version" => "1.0.0",
+        }
+      )
     end
   end
 
