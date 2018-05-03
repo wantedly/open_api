@@ -12,5 +12,16 @@ module OpenApi
       self.tags = tags
       self.external_docs = external_docs
     end
+
+    def serializable_hash
+      {
+        "openapi" => openapi.to_s,
+        "info" => info.serializable_hash,
+        "paths" => paths.serializable_hash,
+        "components" => components&.serializable_hash,
+        "security" => security&.map(&:serializable_hash),
+        "tags" => tags&.map(&:serializable_hash),
+      }.compact
+    end
   end
 end
