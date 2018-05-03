@@ -1,5 +1,7 @@
 module OpenApi
   class Response
+    prepend EquatableAsContent
+
     attr_accessor :description, :headers, :content, :links
 
     def initialize(description:, headers: nil, content: nil, links: nil)

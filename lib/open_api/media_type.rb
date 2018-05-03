@@ -1,5 +1,7 @@
 module OpenApi
   class MediaType
+    prepend EquatableAsContent
+
     attr_accessor :schema, :example, :examples, :encoding
 
     def initialize(schema: nil, example: nil, examples: nil, encoding: nil)

@@ -1,6 +1,7 @@
 module OpenApi
   class Responses
     extend Forwardable
+    prepend EquatableAsContent
 
     attr_accessor :default
 
