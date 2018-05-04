@@ -21,6 +21,7 @@ require "open_api/callback"
 require "open_api/contact"
 require "open_api/license"
 require "open_api/server"
+require "open_api/server_variable"
 
 module OpenApi
 end
