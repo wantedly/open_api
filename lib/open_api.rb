@@ -20,6 +20,7 @@ require "open_api/request_body"
 require "open_api/callback"
 require "open_api/contact"
 require "open_api/license"
+require "open_api/server"
 
 module OpenApi
 end
