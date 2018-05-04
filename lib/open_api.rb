@@ -23,6 +23,7 @@ require "open_api/license"
 require "open_api/server"
 require "open_api/server_variable"
 require "open_api/external_documentation"
+require "open_api/encoding"
 
 module OpenApi
 end
