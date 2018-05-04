@@ -18,6 +18,7 @@ require "open_api/reference"
 require "open_api/parameter"
 require "open_api/request_body"
 require "open_api/callback"
+require "open_api/contact"
 
 module OpenApi
 end
