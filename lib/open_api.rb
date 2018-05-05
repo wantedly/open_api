@@ -26,6 +26,7 @@ require "open_api/external_documentation"
 require "open_api/encoding"
 require "open_api/example"
 require "open_api/link"
+require "open_api/header"
 
 module OpenApi
 end
