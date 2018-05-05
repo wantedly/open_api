@@ -24,6 +24,7 @@ require "open_api/server"
 require "open_api/server_variable"
 require "open_api/external_documentation"
 require "open_api/encoding"
+require "open_api/example"
 
 module OpenApi
 end
