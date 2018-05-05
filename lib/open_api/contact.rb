@@ -13,9 +13,9 @@ module OpenApi
 
     def self.load(hash)
       new(
-        name: hash["name"],
-        url: hash["url"],
-        email: hash["email"],
+        name: hash["name"]&.to_s,
+        url: hash["url"]&.to_s,
+        email: hash["email"]&.to_s,
       )
     end
   end
