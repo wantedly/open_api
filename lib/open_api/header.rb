@@ -23,9 +23,8 @@ module OpenApi
     end
 
     def self.load(hash)
-      other_fields_hash = hash.reject { |key|
-        key.to_sym.in?([:description, :required, :deprecated, :allowEmptyValue])
-      }.symbolize_keys
+      fixed_field_names = [:description, :required, :deprecated, :allowEmptyValue]
+      other_fields_hash = hash.reject { |key| key.to_sym.in?(fixed_field_names) }.symbolize_keys
 
       new(
         description: hash["description"],
