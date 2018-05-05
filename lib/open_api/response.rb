@@ -6,9 +6,9 @@ module OpenApi
 
     def initialize(description:, headers: nil, content: nil, links: nil)
       self.description = description
-      self.headers = headers
-      self.content = content
-      self.links = links
+      self.headers = headers.with_indifferent_access
+      self.content = content.with_indifferent_access
+      self.links = links.with_indifferent_access
     end
 
     def self.load(hash)

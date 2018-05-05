@@ -22,6 +22,9 @@ module OpenApi
       end
     end
 
+    def self.load(hash)
+    end
+
     private
 
     attr_accessor :other_fields_hash
