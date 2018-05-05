@@ -28,9 +28,9 @@ module OpenApi
 
       new(
         description: hash["description"],
-        required: (hash["required"].nil? ? false : hash["required"]),
-        deprecated: (hash["deprecated"].nil? ? false : hash["deprecated"]),
-        allow_empty_value: (hash["allowEmptyValue"].nil? ? false : hash["allowEmptyValue"]),
+        required: hash["required"].nil? ? false : hash["required"],
+        deprecated: hash["deprecated"].nil? ? false : hash["deprecated"],
+        allow_empty_value: hash["allowEmptyValue"].nil? ? false : hash["allowEmptyValue"],
         **other_fields_hash.symbolize_keys,
       )
     end
