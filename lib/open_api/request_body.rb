@@ -12,7 +12,7 @@ module OpenApi
 
     def self.load(hash)
       new(
-        description: hash["description"],
+        description: hash["description"]&.to_s,
         content: hash["content"].map { |k, v| [k, MediaType.load(v)] }.to_h,
         required: hash["required"].nil? ? false : hash["required"]
       )
