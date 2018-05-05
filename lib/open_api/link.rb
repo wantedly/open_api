@@ -1,6 +1,8 @@
 module OpenApi
   # https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.1.md#link-object
   class Link
+    prepend EquatableAsContent
+
     attr_accessor :operation_ref, :operation_id, :parameters, :request_body, :description, :server
 
     def initialize(operation_ref: nil, operation_id: nil, parameters: nil, request_body: nil, description: nil, server: nil, **other_fields_hash)
@@ -23,6 +25,22 @@ module OpenApi
     end
 
     def self.load(hash)
+      return unless hash
+
+      fixed_field_names = [:operationRef, :operationId, :parameters, :requestBody, :description, :server]
+      other_fields_hash = hash.reject { |key|
+        key.to_sym.in?(fixed_field_names)
+      }.symbolize_keys
+
+      new(
+        operation_ref: hash["operationRef"]&.to_s,
+        operation_id: hash["operationId"]&.to_s,
+        parameters: hash["parameters"],
+        request_body: RequestBody.load(hash["requestBody"]),
+        description: hash["description"]&.to_s,
+        server: Server.load(hash["server"]),
+        **other_fields_hash,
+      )
     end
 
     private
