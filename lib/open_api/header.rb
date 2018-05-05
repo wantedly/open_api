@@ -24,14 +24,14 @@ module OpenApi
 
     def self.load(hash)
       fixed_field_names = [:description, :required, :deprecated, :allowEmptyValue]
-      other_fields_hash = hash.reject { |key| key.to_sym.in?(fixed_field_names) }.symbolize_keys
+      other_fields_hash = hash.reject { |key| key.to_sym.in?(fixed_field_names) }
 
       new(
         description: hash["description"],
         required: (hash["required"].nil? ? false : hash["required"]),
         deprecated: (hash["deprecated"].nil? ? false : hash["deprecated"]),
         allow_empty_value: (hash["allowEmptyValue"].nil? ? false : hash["allowEmptyValue"]),
-        **other_fields_hash,
+        **other_fields_hash.symbolize_keys,
       )
     end
 
