@@ -12,6 +12,12 @@ module OpenApi
 
     def_delegator :responses_hash, :[]
 
+    def self.load(hash)
+      return unless hash
+
+      new(**hash.symbolize_keys)
+    end
+
     private
 
     attr_accessor :responses_hash

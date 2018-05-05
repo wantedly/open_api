@@ -23,14 +23,14 @@ module OpenApi
       return unless hash
 
       new(
-        responses: Response.new(hash["responses"]),
+        responses: Responses.load(hash["responses"]),
         tags: hash["tags"],
         summary: hash["summary"]&.to_s,
-        description: hash["description"]&.to_s,
-        external_docs: hash["externalDocs"]&.to_s,
+        description: hash["description"].to_s,
+        external_docs: ExternalDocumentation.load(hash["externalDocs"]),
         operation_id: hash["operationId"]&.to_s,
         parameters: hash["parameters"]&.map { |h| Reference.load(h) || Parameter.load(h) },
-        request_body: hash["requestBody"]&.map { |h| Reference.load(h) || RequestBody.load(h) },
+        request_body: Reference.load(hash["requestBody"]) || RequestBody.load(hash["requestBody"]),
         callbacks: hash["callbacks"]&.map { |k, v| [k, Reference.load(v) || Callback.load(v)] }.to_h,
         deprecated: hash["deprecated"],
         security: hash["security"]&.map { |h| SecurityRequirement.load(h) },
