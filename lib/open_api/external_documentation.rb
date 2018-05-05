@@ -10,8 +10,8 @@ module OpenApi
 
     def self.load(hash)
       new(
-        description: hash["description"],
-        url: hash["url"],
+        description: hash["description"]&.to_s,
+        url: hash["url"].to_s,
       )
     end
   end
