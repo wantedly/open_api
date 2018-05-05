@@ -21,6 +21,21 @@ module OpenApi
       end
     end
 
+    def self.load(hash)
+      other_fields_hash = hash.reject { |key|
+        key.to_sym.in?([:name, :in, :description, :required, :deprecated, :allow_empty_value])
+      }
+      new(
+        name: hash["name"].to_s,
+        in: hash["in"].to_s,
+        description: hash["description"]&.to_s,
+        required: !!hash["required"],
+        deprecated: !!hash["deprecated"],
+        allow_empty_value: !!hash["allowEmptyValue"],
+        **other_fields_hash,
+      )
+    end
+
     private
 
     attr_accessor :other_fields_hash

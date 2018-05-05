@@ -8,5 +8,13 @@ module OpenApi
       self.description = description
       self.variables = variables
     end
+
+    def self.load(hash)
+      new(
+        url: hash["url"].to_s,
+        description: hash["description"]&.to_s,
+        variables: hash["variables"]&.map { |h| ServerVariable.load(h) }
+      )
+    end
   end
 end

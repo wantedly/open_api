@@ -18,5 +18,24 @@ module OpenApi
       self.security = security
       self.servers = servers
     end
+
+    def self.load(hash)
+      return unless hash
+
+      new(
+        responses: Response.new(hash["responses"]),
+        tags: hash["tags"],
+        summary: hash["summary"]&.to_s,
+        description: hash["description"]&.to_s,
+        external_docs: hash["externalDocs"]&.to_s,
+        operation_id: hash["operationId"]&.to_s,
+        parameters: hash["parameters"]&.map { |h| Reference.load(h) || Parameter.load(h) },
+        request_body: hash["requestBody"]&.map { |h| Reference.load(h) || RequestBody.load(h) },
+        callbacks: hash["callbacks"]&.map { |k, v| [k, Reference.load(v) || Callback.load(v)] }.to_h,
+        deprecated: hash["deprecated"],
+        security: hash["security"]&.map { |h| SecurityRequirement.load(h) },
+        servers: hash["servers"]&.map { |h| Server.load(h) },
+      )
+    end
   end
 end

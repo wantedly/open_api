@@ -2,6 +2,7 @@
 require "active_support"
 require "active_support/core_ext/hash"
 require "active_support/core_ext/string/inflections"
+require "active_support/core_ext/object/inclusion"
 
 # open_api/*
 require "open_api/equatable_as_content"
