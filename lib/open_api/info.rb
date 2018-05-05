@@ -30,8 +30,8 @@ module OpenApi
         title: hash["title"].to_s,
         description: hash["description"].to_s,
         terms_of_service: hash["termsOfService"].to_s,
-        contact: Contanct.load(**hash["contact"]),
-        license: License.load(**hash["license"]),
+        contact: Contact.load(hash["contact"]),
+        license: License.load(hash["license"]),
         version: hash["version"].to_s,
       )
     end
