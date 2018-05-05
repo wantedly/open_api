@@ -1,5 +1,7 @@
 module OpenApi
   class Schema
+    prepend EquatableAsContent
+
     attr_accessor :nullable, :discriminator, :read_only, :write_only, :xml, :external_docs, :example, :deprecated
 
     def initialize(nullable: false, discriminator: nil, read_only: false, write_only: false, xml: nil, external_docs: nil, example: nil, deprecated: false, **other_fields_hash)
@@ -28,12 +30,12 @@ module OpenApi
       new(
         nullable: hash["nullable"],
         discriminator: hash["discriminator"],
-        read_only: hash["readOnly"],
-        writeOnly: hash["writeOnly"],
+        read_only: hash["readOnly"].nil? ? false : hash["readOnly"],
+        write_only: hash["writeOnly"].nil? ? false : hash["writeOnly"],
         xml: Xml.load(hash["xml"]),
         external_docs: ExternalDocumentation.load(hash["externalDocs"]),
         example: Example.load(hash["example"]),
-        deprecated: hash["deprecated"],
+        deprecated: hash["deprecated"].nil? ? false : hash["deprecated"],
         **other_fields_hash,
       )
     end

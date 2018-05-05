@@ -10,5 +10,15 @@ module OpenApi
       self.attribute = attribute
       self.wrapped = wrapped
     end
+
+    def self.load(hash)
+      new(
+        name: hash["name"],
+        namespace: hash["namespace"],
+        prefix: hash["prefix"],
+        attribute: hash["attribute"],
+        wrapped: hash["wrapped"],
+      )
+    end
   end
 end

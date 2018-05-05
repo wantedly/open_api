@@ -49,4 +49,42 @@ RSpec.describe OpenApi::Schema do
       )
     end
   end
+
+  describe ".load" do
+    subject { described_class.load(hash) }
+
+    let(:hash) do
+      {
+        "nullable" => false,
+        "type" => "object",
+        "xml" => xml_hash,
+        "externalDocs" => external_docs_hash,
+        "example" => example_hash,
+      }
+    end
+    # Hashes
+    let(:xml_hash) { double(:xml_hash) }
+    let(:external_docs_hash) { double(:external_docs_hash) }
+    let(:example_hash) { double(:example_hash) }
+    # Objects
+    let(:xml) { double(:xml) }
+    let(:external_docs) { double(:external_docs) }
+    let(:example) { double(:example) }
+
+    before do
+      allow(OpenApi::Xml).to receive(:load).with(xml_hash).and_return(xml)
+      allow(OpenApi::ExternalDocumentation).to receive(:load).with(external_docs_hash).and_return(external_docs)
+      allow(OpenApi::Example).to receive(:load).with(example_hash).and_return(example)
+    end
+
+    it "creates an instance from hash" do
+      is_expected.to eq described_class.new(
+        nullable: false,
+        type: "object",
+        xml: xml,
+        external_docs: external_docs,
+        example: example,
+      )
+    end
+  end
 end
