@@ -12,8 +12,8 @@ module OpenApi
 
     def self.load(hash)
       new(
-        summary: hash["summary"],
-        description: hash["description"],
+        summary: hash["summary"]&.to_s,
+        description: hash["description"]&.to_s,
         value: hash["value"],
         external_value: hash["externalValue"],
       )
