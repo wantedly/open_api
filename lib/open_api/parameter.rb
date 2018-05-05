@@ -1,6 +1,8 @@
 module OpenApi
   # https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.1.md#parameterObject
   class Parameter
+    prepend EquatableAsContent
+
     attr_accessor :name, :in, :description, :required, :deprecated, :allow_empty_value
 
     def initialize(name:, in:, description: nil, required: nil, deprecated: nil, allow_empty_value: nil, **other_fields_hash)
@@ -24,14 +26,21 @@ module OpenApi
     def self.load(hash)
       other_fields_hash = hash.reject { |key|
         key.to_sym.in?([:name, :in, :description, :required, :deprecated, :allow_empty_value])
-      }
+      }.symbolize_keys.map { |k, v|
+        value =
+          case k
+          when :schema then Schema.load(v)
+          end
+        [k, value]
+      }.to_h
+
       new(
         name: hash["name"].to_s,
         in: hash["in"].to_s,
         description: hash["description"]&.to_s,
-        required: !!hash["required"],
-        deprecated: !!hash["deprecated"],
-        allow_empty_value: !!hash["allowEmptyValue"],
+        required: hash["required"],
+        deprecated: hash["deprecated"],
+        allow_empty_value: hash["allowEmptyValue"],
         **other_fields_hash,
       )
     end

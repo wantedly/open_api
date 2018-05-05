@@ -20,6 +20,24 @@ module OpenApi
       end
     end
 
+    def self.load(hash)
+      other_fields_hash = hash.reject { |key|
+        key.to_sym.in?([:nullable, :discriminator, :readOnly, :writeOnly, :xml, :externalDocs, :example, :deprecated])
+      }.symbolize_keys
+
+      new(
+        nullable: hash["nullable"],
+        discriminator: hash["discriminator"],
+        read_only: hash["readOnly"],
+        writeOnly: hash["writeOnly"],
+        xml: Xml.load(hash["xml"]),
+        external_docs: ExternalDocumentation.load(hash["externalDocs"]),
+        example: Example.load(hash["example"]),
+        deprecated: hash["deprecated"],
+        **other_fields_hash,
+      )
+    end
+
     private
 
     attr_accessor :other_fields_hash
