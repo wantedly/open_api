@@ -29,6 +29,7 @@ require "open_api/link"
 require "open_api/header"
 require "open_api/discriminator"
 require "open_api/xml"
+require "open_api/security_schema"
 
 module OpenApi
 end
