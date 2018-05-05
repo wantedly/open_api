@@ -8,5 +8,13 @@ module OpenApi
       self.description = description
       self.external_docs = external_docs
     end
+
+    def self.load(hash)
+      new(
+        name: hash["name"],
+        description: hash["description"],
+        external_docs: hash["externalDocs"],
+      )
+    end
   end
 end

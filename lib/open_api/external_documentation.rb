@@ -7,5 +7,12 @@ module OpenApi
       self.description = description
       self.url = url
     end
+
+    def self.load(hash)
+      new(
+        description: hash["description"],
+        url: hash["url"],
+      )
+    end
   end
 end

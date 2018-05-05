@@ -5,5 +5,11 @@ module OpenApi
     def initialize(ref:)
       self.ref = ref
     end
+
+    def self.load(hash)
+      return nil unless hash["$ref"]
+
+      new(ref: hash["$ref"])
+    end
   end
 end

@@ -21,7 +21,22 @@ module OpenApi
         "components" => components&.serializable_hash,
         "security" => security&.map(&:serializable_hash),
         "tags" => tags&.map(&:serializable_hash),
+        "externalDocs" => external_docs&.serializable_hash,
       }.compact
+    end
+
+    def self.load(hash)
+      return unless hash
+
+      new(
+        openapi: hash["openapi"],
+        info: Info.load(hash["info"]),
+        paths: Paths.load(hash["paths"]),
+        components: Components.load(hash["components"]),
+        security: hash["security"]&.map { |requirement_hash| SecurityRequirement.load(requirement_hash) },
+        tags: hash["tags"]&.map { |tag_hash| Tag.load(tag_hash) },
+        external_docs: ExternalDocumentation.load(hash["externalDocs"]),
+      )
     end
   end
 end

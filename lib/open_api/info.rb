@@ -22,5 +22,16 @@ module OpenApi
         "version" => version.to_s,
       }.compact
     end
+
+    def self.load(hash)
+      new(
+        title: hash["title"].to_s,
+        description: hash["description"].to_s,
+        terms_of_service: hash["termsOfService"].to_s,
+        contact: Contanct.load(**hash["contact"]),
+        license: License.load(**hash["license"]),
+        version: hash["version"].to_s,
+      )
+    end
   end
 end

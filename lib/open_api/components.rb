@@ -13,5 +13,19 @@ module OpenApi
       self.links = links
       self.callbacks = callbacks
     end
+
+    def self.load(hash)
+      new(
+        schemas: hash["schemas"]&.map { |k, v| [k, Reference.load(v) || Schema.load(v)] }.to_h,
+        responses: hash["responses"]&.map { |k, v| [k, Reference.load(v) || Response.load(v)] }.to_h,
+        parameters: hash["parameters"]&.map { |k, v| [k, Reference.load(v) || Parameter.load(v)] }.to_h,
+        examples: hash["examples"]&.map { |k, v| [k, Reference.load(v) || Example.load(v)] }.to_h,
+        request_bodies: hash["requestBodies"]&.map { |k, v| [k, Reference.load(v) || RequestBody.load(v)] }.to_h,
+        headers: hash["headers"]&.map { |k, v| [k, Reference.load(v) || Header.load(v)] }.to_h,
+        security_schemes: hash["securitySchemes"]&.map { |k, v| [k, Reference.load(v) || SecuritySchema.load(v)] }.to_h,
+        links: hash["links"]&.map { |k, v| [k, Reference.load(v) || Link.load(v)] }.to_h,
+        callbacks: hash["callbacks"]&.map { |k, v| [k, Reference.load(v) || Callback.load(v)] }.to_h,
+      )
+    end
   end
 end

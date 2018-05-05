@@ -9,6 +9,10 @@ module OpenApi
 
     def_delegator :path_hash, :[]
 
+    def self.load(hash)
+      new(hash)
+    end
+
     private
 
     attr_accessor :path_hash
