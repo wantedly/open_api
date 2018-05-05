@@ -15,7 +15,8 @@ module OpenApi
     def self.load(hash)
       return unless hash
 
-      new(**hash.symbolize_keys)
+      hash = hash.map { |k, v| [k.to_sym, Response.load(v)] }.to_h
+      new(**hash)
     end
 
     private
