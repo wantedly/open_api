@@ -27,7 +27,7 @@ require "open_api/callback"
 require "open_api/example"
 require "open_api/link"
 require "open_api/header"
-
+require "open_api/tag"
 require "open_api/reference"
 require "open_api/schema"
 require "open_api/discriminator"
