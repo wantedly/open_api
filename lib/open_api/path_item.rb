@@ -15,5 +15,14 @@ module OpenApi
       self.parameters = parameters
       self.operations = operations.with_indifferent_access
     end
+
+    def self.load(hash)
+      new(
+        ref: hash["$ref"],
+        summary: hash["summary"],
+        description: hash["description"],
+        servers: hash["servers"].map { |server_hash| Server.load(server_hash) },
+      )
+    end
   end
 end

@@ -11,7 +11,8 @@ module OpenApi
     def_delegator :path_hash, :[]
 
     def self.load(hash)
-      new(hash)
+      hash = hash.map { |k, v| [k.to_sym, PathItem.load(v)] }.to_h
+      new(**hash)
     end
 
     private
