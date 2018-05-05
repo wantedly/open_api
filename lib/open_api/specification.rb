@@ -31,6 +31,7 @@ module OpenApi
       return unless hash
 
       new(
+        openapi: hash["openapi"].to_s,
         openapi: hash["openapi"],
         info: Info.load(hash["info"]),
         paths: Paths.load(hash["paths"]),
