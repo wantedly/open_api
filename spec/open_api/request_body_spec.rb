@@ -17,4 +17,32 @@ RSpec.describe OpenApi::RequestBody do
       )
     ).to be_a(described_class)
   end
+
+  describe ".load" do
+    subject { described_class.load(hash) }
+
+    let(:hash) do
+      {
+        "description" => "desc",
+        "content" => {
+          "application/json" => json_object_hash,
+        }
+      }
+    end
+    let(:json_object_hash) { double(:media_type_hash) }
+    let(:json_object) { double(:media_type) }
+
+    before do
+      allow(OpenApi::MediaType).to receive(:load).with(json_object_hash).and_return(json_object)
+    end
+
+    it "creates an instance from hash" do
+      is_expected.to eq described_class.new(
+        description: "desc",
+        content: {
+          "application/json" => json_object,
+        },
+      )
+    end
+  end
 end
