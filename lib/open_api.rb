@@ -28,6 +28,7 @@ require "open_api/example"
 require "open_api/link"
 require "open_api/header"
 require "open_api/discriminator"
+require "open_api/xml"
 
 module OpenApi
 end
