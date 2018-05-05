@@ -31,6 +31,7 @@ require "open_api/discriminator"
 require "open_api/xml"
 require "open_api/security_schema"
 require "open_api/o_auth_flows"
+require "open_api/o_auth_flow"
 
 module OpenApi
 end
