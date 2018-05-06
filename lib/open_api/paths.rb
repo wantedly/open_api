@@ -16,7 +16,7 @@ module OpenApi
     end
 
     def serializable_hash
-      path_hash.to_hash
+      path_hash.map { |k, v| [k.to_s, v.serializable_hash] }.to_h
     end
 
     private
