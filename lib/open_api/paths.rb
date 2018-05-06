@@ -15,6 +15,10 @@ module OpenApi
       new(**hash)
     end
 
+    def serializable_hash
+      path_hash.to_hash
+    end
+
     private
 
     attr_accessor :path_hash
