@@ -16,6 +16,17 @@ module OpenApi
       self.operations = operations.with_indifferent_access
     end
 
+    def serializable_hash
+      {
+        "ref" => ref.to_s,
+        "summary" => summary.to_s,
+        "description" => description.to_s,
+        "servers" => servers.map(&:serializable_hash),
+        "parameters" => parameters.map(&:serializable_hash),
+        **operations.map { |k, v| [k.to_s, v.serializable_hash] },
+      }
+    end
+
     def self.load(hash)
       operations = hash.select { |key| key.to_sym.in?(OPERATION_NAMES) }
       new(
