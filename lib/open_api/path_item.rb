@@ -18,13 +18,13 @@ module OpenApi
 
     def serializable_hash
       {
-        "ref" => ref.to_s,
-        "summary" => summary.to_s,
-        "description" => description.to_s,
-        "servers" => servers.map(&:serializable_hash),
-        "parameters" => parameters.map(&:serializable_hash),
+        "ref" => ref&.to_s,
+        "summary" => summary&.to_s,
+        "description" => description&.to_s,
+        "servers" => servers&.map(&:serializable_hash),
+        "parameters" => parameters&.map(&:serializable_hash),
         **operations.map { |k, v| [k.to_s, v.serializable_hash] },
-      }
+      }.compact
     end
 
     def self.load(hash)
