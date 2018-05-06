@@ -9,5 +9,8 @@ module OpenApi
       self.refresh_url = refresh_url
       self.scopes = scopes.with_indifferent_access
     end
+
+    def self.load(hash)
+    end
   end
 end
