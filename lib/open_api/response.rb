@@ -12,11 +12,13 @@ module OpenApi
     end
 
     def self.load(hash)
+      return unless hash
+
       new(
         description: hash["description"].to_s,
-        headers: hash["headers"]&.map { |k, v| [k, Header.load(v)] }.to_h,
-        content: hash["content"]&.map { |k, v| [k, MediaType.load(v)] }.to_h,
-        links: hash["links"]&.map { |k, v| [k, Reference.load(v) || Link.load(v)] }.to_h,
+        headers: hash["headers"]&.map { |k, v| [k, Header.load(v)] }&.to_h,
+        content: hash["content"]&.map { |k, v| [k, MediaType.load(v)] }&.to_h,
+        links: hash["links"]&.map { |k, v| [k, Reference.load(v) || Link.load(v)] }&.to_h,
       )
     end
   end

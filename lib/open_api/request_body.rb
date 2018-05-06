@@ -11,6 +11,8 @@ module OpenApi
     end
 
     def self.load(hash)
+      return unless hash
+
       new(
         description: hash["description"]&.to_s,
         content: hash["content"].map { |k, v| [k, MediaType.load(v)] }.to_h,

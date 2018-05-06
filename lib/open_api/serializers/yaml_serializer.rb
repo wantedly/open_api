@@ -1,3 +1,5 @@
+require 'yaml'
+
 module OpenApi
   module Serializers
     class YamlSerializer

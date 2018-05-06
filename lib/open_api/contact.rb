@@ -12,6 +12,7 @@ module OpenApi
     end
 
     def self.load(hash)
+      return unless hash
       new(
         name: hash["name"]&.to_s,
         url: hash["url"]&.to_s,

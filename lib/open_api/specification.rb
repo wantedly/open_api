@@ -32,7 +32,6 @@ module OpenApi
 
       new(
         openapi: hash["openapi"].to_s,
-        openapi: hash["openapi"],
         info: Info.load(hash["info"]),
         paths: Paths.load(hash["paths"]),
         components: Components.load(hash["components"]),

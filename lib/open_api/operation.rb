@@ -31,7 +31,7 @@ module OpenApi
         operation_id: hash["operationId"]&.to_s,
         parameters: hash["parameters"]&.map { |h| Reference.load(h) || Parameter.load(h) },
         request_body: Reference.load(hash["requestBody"]) || RequestBody.load(hash["requestBody"]),
-        callbacks: hash["callbacks"]&.map { |k, v| [k, Reference.load(v) || Callback.load(v)] }.to_h,
+        callbacks: hash["callbacks"]&.map { |k, v| [k, Reference.load(v) || Callback.load(v)] }&.to_h,
         deprecated: hash["deprecated"],
         security: hash["security"]&.map { |h| SecurityRequirement.load(h) },
         servers: hash["servers"]&.map { |h| Server.load(h) },

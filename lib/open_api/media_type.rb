@@ -17,8 +17,8 @@ module OpenApi
       new(
         schema: Reference.load(hash["schema"]) || Schema.load(hash["schema"]),
         example: hash["example"],
-        examples: hash["examples"]&.map { |k, v| [k, Reference.load(v) || Example.load(v)] }.to_h,
-        encoding: hash["encoding"]&.map { |k, v| [k, Encoding.load(v)] }.to_h
+        examples: hash["examples"]&.map { |k, v| [k, Reference.load(v) || Example.load(v)] }&.to_h,
+        encoding: hash["encoding"]&.map { |k, v| [k, Encoding.load(v)] }&.to_h
       )
     end
   end

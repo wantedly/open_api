@@ -17,6 +17,8 @@ module OpenApi
     end
 
     def self.load(hash)
+      return unless hash
+
       new(
         schemas: hash["schemas"]&.map { |k, v| [k, Reference.load(v) || Schema.load(v)] }.to_h,
         responses: hash["responses"]&.map { |k, v| [k, Reference.load(v) || Response.load(v)] }.to_h,

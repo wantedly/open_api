@@ -40,5 +40,8 @@ require "open_api/o_auth_flows"
 require "open_api/o_auth_flow"
 require "open_api/security_requirement"
 
+# Serializer
+require "open_api/serializers"
+
 module OpenApi
 end

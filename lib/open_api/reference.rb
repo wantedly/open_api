@@ -9,7 +9,8 @@ module OpenApi
     end
 
     def self.load(hash)
-      return nil unless hash["$ref"]
+      return unless hash
+      return unless hash["$ref"]
 
       new(ref: hash["$ref"])
     end

@@ -25,10 +25,19 @@ module OpenApi
     def self.load(hash)
       other_fields_hash = hash.reject { |key|
         key.to_sym.in?([:nullable, :discriminator, :readOnly, :writeOnly, :xml, :externalDocs, :example, :deprecated])
-      }.symbolize_keys
+      }.map { |k, v|
+        loaded_value =
+          case k.to_sym
+          when :items then Reference.load(v)
+          else
+            v
+          end
+
+        [k, loaded_value]
+      }.to_h
 
       new(
-        nullable: hash["nullable"],
+        nullable: hash["nullable"].nil? ? false : hash["nullable"],
         discriminator: hash["discriminator"],
         read_only: hash["readOnly"].nil? ? false : hash["readOnly"],
         write_only: hash["writeOnly"].nil? ? false : hash["writeOnly"],
@@ -36,7 +45,7 @@ module OpenApi
         external_docs: ExternalDocumentation.load(hash["externalDocs"]),
         example: Example.load(hash["example"]),
         deprecated: hash["deprecated"].nil? ? false : hash["deprecated"],
-        **other_fields_hash,
+        **other_fields_hash.symbolize_keys,
       )
     end
 
