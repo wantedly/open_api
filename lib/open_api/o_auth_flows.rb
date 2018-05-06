@@ -9,5 +9,8 @@ module OpenApi
       self.client_credentials = client_credentials
       self.authorization_code = authorization_code
     end
+
+    def self.load(hash)
+    end
   end
 end
