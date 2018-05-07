@@ -11,6 +11,15 @@ module OpenApi
       self.links = links&.with_indifferent_access
     end
 
+    def serializable_hash
+      {
+        "description" => description.to_s,
+        "headers" => headers&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_hash,
+        "content" => content&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_hash,
+        "links" => links&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_hash,
+      }
+    end
+
     def self.load(hash)
       return unless hash
 
