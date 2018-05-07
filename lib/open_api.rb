@@ -1,8 +1,11 @@
 # Dependant libraries
 require "active_support"
 require "active_support/core_ext/hash"
+require "active_support/core_ext/string/inflections"
+require "active_support/core_ext/object/inclusion"
 
 # open_api/*
+require "open_api/equatable_as_content"
 require "open_api/version"
 
 # Models
@@ -36,6 +39,9 @@ require "open_api/security_schema"
 require "open_api/o_auth_flows"
 require "open_api/o_auth_flow"
 require "open_api/security_requirement"
+
+# Serializer
+require "open_api/serializers"
 
 module OpenApi
 end

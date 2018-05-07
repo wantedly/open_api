@@ -25,4 +25,26 @@ RSpec.describe OpenApi::Responses do
       is_expected.to eq response
     end
   end
+
+  describe ".load" do
+    subject { described_class.load(hash) }
+
+    let(:hash) do
+      {
+        "200" => response_hash,
+      }
+    end
+    let(:response_hash) { double(:hash) }
+    let(:response) { double(:response) }
+
+    before do
+      allow(OpenApi::Response).to receive(:load).with(response_hash).and_return(response)
+    end
+
+    it "creates an instance from hash" do
+      is_expected.to eq described_class.new(
+        "200": response,
+      )
+    end
+  end
 end

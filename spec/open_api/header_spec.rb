@@ -23,4 +23,26 @@ RSpec.describe OpenApi::Header do
       is_expected.to eq schema
     end
   end
+
+  describe ".load" do
+    subject { described_class.load(hash) }
+
+    let(:hash) do
+      {
+        "description" => "desc",
+        "required" => true,
+        "deprecated" => false,
+        "allowEmptyValue" => false,
+      }
+    end
+
+    it "creates an instance from hash" do
+      is_expected.to eq described_class.new(
+        description: "desc",
+        required: true,
+        deprecated: false,
+        allow_empty_value: false,
+      )
+    end
+  end
 end

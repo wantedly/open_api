@@ -9,5 +9,16 @@ module OpenApi
       self.value = value
       self.external_value = external_value
     end
+
+    def self.load(hash)
+      return unless hash
+
+      new(
+        summary: hash["summary"]&.to_s,
+        description: hash["description"]&.to_s,
+        value: hash["value"],
+        external_value: hash["externalValue"],
+      )
+    end
   end
 end
