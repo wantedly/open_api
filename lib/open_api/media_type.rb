@@ -11,6 +11,15 @@ module OpenApi
       self.encoding = encoding
     end
 
+    def serializable_hash
+      {
+        "schema" => schema.serializable_hash,
+        "example" => example,
+        "examples" => examples&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_hash,
+        "encoding" => encoding&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_hash,
+      }
+    end
+
     def self.load(hash)
       return unless hash
 
