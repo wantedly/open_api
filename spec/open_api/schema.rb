@@ -22,6 +22,19 @@ module OpenApi
       end
     end
 
+    def serializable_hash
+      {
+        "nullable" => nullable,
+        "discriminator" => discriminator&.serializable_hash,
+        "readOnly" => read_only,
+        "writeOnly" => write_only,
+        "xml" => xml&.serializable_hash,
+        "externalDocs" => external_docs&.serializable_hash,
+        "example" => example,
+        "deprecated" => deprecated,
+      }
+    end
+
     def self.load(hash)
       other_fields_hash = hash.reject { |key|
         key.to_sym.in?([:nullable, :discriminator, :readOnly, :writeOnly, :xml, :externalDocs, :example, :deprecated])
