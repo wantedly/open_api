@@ -23,8 +23,8 @@ module OpenApi
         "description" => description&.to_s,
         "servers" => servers&.map(&:serializable_hash),
         "parameters" => parameters&.map(&:serializable_hash),
-        **operations.map { |k, v| [k.to_s, v.serializable_hash] },
-      }.compact
+      }.merge(operations.map { |k, v| [k.to_s, v.serializable_hash] }.to_h)
+       .compact
     end
 
     def self.load(hash)
