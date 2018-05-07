@@ -19,6 +19,23 @@ module OpenApi
       self.servers = servers
     end
 
+    def serializable_hash
+      {
+        "responses" => responses.serializable_hash,
+        "tags" => tags&.map(&:to_s),
+        "summary" => summary&.to_s,
+        "description" => description&.to_s,
+        "externalDocs" => external_docs&.serializable_hash,
+        "operationId" => operation_id&.to_s,
+        "parameters" => parameters&.map(&:serializable_hash),
+        "requestBody" => request_body&.serializable_hash,
+        "callbacks" => callbacks&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_hash,
+        "deprecated" => deprecated,
+        "security" => security&.map(&:serializable_hash),
+        "servers" => servers&.map(&:server),
+      }
+    end
+
     def self.load(hash)
       return unless hash
 
