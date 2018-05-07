@@ -17,7 +17,7 @@ module OpenApi
         "headers" => headers&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_h,
         "content" => content&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_h,
         "links" => links&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_h,
-      }
+      }.compact
     end
 
     def self.load(hash)

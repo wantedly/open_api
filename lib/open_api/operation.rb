@@ -21,10 +21,10 @@ module OpenApi
 
     def serializable_hash
       {
+        "description" => description&.to_s,
         "responses" => responses.serializable_hash,
         "tags" => tags&.map(&:to_s),
         "summary" => summary&.to_s,
-        "description" => description&.to_s,
         "externalDocs" => external_docs&.serializable_hash,
         "operationId" => operation_id&.to_s,
         "parameters" => parameters&.map(&:serializable_hash),
@@ -33,7 +33,7 @@ module OpenApi
         "deprecated" => deprecated,
         "security" => security&.map(&:serializable_hash),
         "servers" => servers&.map(&:server),
-      }
+      }.compact
     end
 
     def self.load(hash)
@@ -43,7 +43,7 @@ module OpenApi
         responses: Responses.load(hash["responses"]),
         tags: hash["tags"],
         summary: hash["summary"]&.to_s,
-        description: hash["description"].to_s,
+        description: hash["description"]&.to_s,
         external_docs: ExternalDocumentation.load(hash["externalDocs"]),
         operation_id: hash["operationId"]&.to_s,
         parameters: hash["parameters"]&.map { |h| Reference.load(h) || Parameter.load(h) },

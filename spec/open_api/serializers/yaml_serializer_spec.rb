@@ -37,24 +37,24 @@ RSpec.describe OpenApi::Serializers::YamlSerializer do
       is_expected.to eq(
 <<-EOL
 ---
-openapi: "3.0.1"
+openapi: 3.0.1
 info:
-  title: "Awesome API"
-  description: "It provides something awesome"
-  version: "1.0.0"
+  title: Awesome API
+  description: It provides something awesome
+  version: 1.0.0
 paths:
-  /pets:
+  "/pets":
     get:
-      description: "Returns all pets from the system that the user has access to"
+      description: Returns all pets from the system that the user has access to
       responses:
-        200:
-          description: "A list of pets."
+        '200':
+          description: A list of pets.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/pet"
+                  "$ref": "#/components/schemas/pet"
 EOL
       )
     end

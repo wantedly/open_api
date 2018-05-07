@@ -15,7 +15,9 @@ module OpenApi
     def serializable_hash
       {
         "default" => default&.serializable_hash,
-      }.merge(responses_hash.map { |k, v| [k.to_s, v.serializable_hash] }.to_h)
+      }
+        .merge(responses_hash.map { |k, v| [k.to_s, v.serializable_hash] }.to_h)
+        .compact
     end
 
     def self.load(hash)

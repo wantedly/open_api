@@ -17,8 +17,8 @@ module OpenApi
     def serializable_hash
       {
         "title" => title.to_s,
-        "description" => description.to_s,
-        "termsOfService" => terms_of_service.to_s,
+        "description" => description&.to_s,
+        "termsOfService" => terms_of_service&.to_s,
         "contact" => contact&.serializable_hash,
         "license" => license&.serializable_hash,
         "version" => version.to_s,

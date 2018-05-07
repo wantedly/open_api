@@ -4,8 +4,15 @@ module OpenApi
     prepend EquatableAsContent
 
     attr_accessor :ref
+
     def initialize(ref:)
       self.ref = ref
+    end
+
+    def serializable_hash
+      {
+        "$ref" => ref.to_s,
+      }
     end
 
     def self.load(hash)

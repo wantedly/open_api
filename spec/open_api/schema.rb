@@ -23,16 +23,28 @@ module OpenApi
     end
 
     def serializable_hash
+      converted_other_fields_hash = other_fields_hash.map { |k, v|
+        value =
+          case k.to_sym
+          when :items then v.serializable_hash
+          else
+            v
+          end
+        [k.to_s, value]
+      }.to_h
+
       {
-        "nullable" => nullable,
+        "nullable" => nullable == false ? nil : nullable,
         "discriminator" => discriminator&.serializable_hash,
-        "readOnly" => read_only,
-        "writeOnly" => write_only,
+        "readOnly" => read_only == false ? nil : read_only,
+        "writeOnly" => write_only == false ? nil : write_only,
         "xml" => xml&.serializable_hash,
         "externalDocs" => external_docs&.serializable_hash,
         "example" => example,
-        "deprecated" => deprecated,
+        "deprecated" => deprecated == false ? nil : deprecated,
       }
+        .merge(converted_other_fields_hash)
+        .compact
     end
 
     def self.load(hash)

@@ -13,11 +13,11 @@ module OpenApi
 
     def serializable_hash
       {
-        "schema" => schema.serializable_hash,
+        "schema" => schema&.serializable_hash,
         "example" => example,
         "examples" => examples&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_hash,
         "encoding" => encoding&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_hash,
-      }
+      }.compact
     end
 
     def self.load(hash)
