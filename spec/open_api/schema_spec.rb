@@ -48,6 +48,60 @@ RSpec.describe OpenApi::Schema do
         }
       )
     end
+
+    context "when not initialized field" do
+      let(:schema) do
+        described_class.new(
+          nullable: true,
+          type: :object,
+        )
+      end
+
+      it "returns nil" do
+        expect(schema.properties).to be_nil
+      end
+    end
+
+    context "when initialized after initialzing object self" do
+      let(:schema) do
+        described_class.new(
+          nullable: true,
+          type: :object,
+        )
+      end
+
+      before do
+        schema.properties = {
+          title: {
+            type: :string,
+          }
+        }
+      end
+
+      it "returns assigned value for field" do
+        expect(schema.properties).to eq(
+          {
+            title: {
+              type: :string,
+            },
+          }.with_indifferent_access
+        )
+      end
+    end
+  end
+
+  describe '#{field_name}=' do
+    let(:schema) { described_class.new }
+
+    it "assigns value" do
+      expect { schema.type = :object }.to change { schema.type }.from(nil).to(:object)
+    end
+
+    it "defines attribute assessors" do
+      expect { schema.type = :object }
+        .to change { schema.respond_to?(:type) }.to(true)
+        .and change { schema.respond_to?(:type=) }.to(true)
+    end
   end
 
   describe ".load" do
