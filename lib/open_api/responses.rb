@@ -12,6 +12,13 @@ module OpenApi
 
     def_delegator :responses_hash, :[]
 
+    def serializable_hash
+      {
+        "default" => default&.serializable_hash,
+        **responses_hash.map { |k, v| [k.to_s, v.serializable_hash] }.to_hash,
+      }
+    end
+
     def self.load(hash)
       return unless hash
 
