@@ -52,6 +52,7 @@ module OpenApi
         value =
           case k.to_sym
           when :items then v.serializable_hash
+          when :properties then v.map { |k, v| [k.to_s, v.serializable_hash] }.to_h
           else
             v
           end
@@ -79,6 +80,7 @@ module OpenApi
         loaded_value =
           case k.to_sym
           when :items then Reference.load(v)
+          when :properties then v.map { |k, v| [k, Reference.new(v) || Schema.new(v)] }.to_h
           else
             v
           end
