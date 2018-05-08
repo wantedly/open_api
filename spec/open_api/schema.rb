@@ -13,7 +13,7 @@ module OpenApi
       self.external_docs = external_docs
       self.example = example
       self.deprecated = deprecated
-      self.other_fields_hash = other_fields_hash.with_indifferent_access
+      self.other_fields_hash = other_fields_hash.symbolize_keys
 
       other_fields_hash.keys.each { |name| new_field(name) }
     end
@@ -25,7 +25,7 @@ module OpenApi
           raise ArgumentError, "wrong number of arguments (#{len} for 1)", caller(1)
         end
         new_field(mname)
-        other_fields_hash[mname] = args[0]
+        other_fields_hash[mname.to_sym] = args[0]
       elsif len == 0
         if other_fields_hash.key?(mname.to_s)
           new_field(mname)
@@ -42,6 +42,7 @@ module OpenApi
     end
 
     def new_field(name)
+      name = name.to_sym
       define_singleton_method(name) { other_fields_hash[name] }
       define_singleton_method("#{name}=") { |value| other_fields_hash[name] = value }
     end

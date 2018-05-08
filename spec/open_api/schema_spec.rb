@@ -84,7 +84,7 @@ RSpec.describe OpenApi::Schema do
             title: {
               type: :string,
             },
-          }.with_indifferent_access
+          }
         )
       end
     end
