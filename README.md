@@ -1,4 +1,4 @@
-# OpenApi [![Build Status](https://travis-ci.org/ngtk/open_api.svg?branch=master)](https://travis-ci.org/ngtk/open_api) [![Maintainability](https://api.codeclimate.com/v1/badges/dc4713a3cb67f6edce65/maintainability)](https://codeclimate.com/github/ngtk/open_api/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/dc4713a3cb67f6edce65/test_coverage)](https://codeclimate.com/github/ngtk/open_api/test_coverage)
+# OpenApi [![Gem Version](https://badge.fury.io/rb/open_api.svg)](https://badge.fury.io/rb/open_api) [![Build Status](https://travis-ci.org/ngtk/open_api.svg?branch=master)](https://travis-ci.org/ngtk/open_api) [![Maintainability](https://api.codeclimate.com/v1/badges/dc4713a3cb67f6edce65/maintainability)](https://codeclimate.com/github/ngtk/open_api/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/dc4713a3cb67f6edce65/test_coverage)](https://codeclimate.com/github/ngtk/open_api/test_coverage)
 
 `open_api` provides PORO and serializers for OpenAPI and it supports OpenAPI v3.0.1.
 
