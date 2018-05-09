@@ -13,7 +13,7 @@ module OpenApi
       self.external_docs = external_docs
       self.example = example
       self.deprecated = deprecated
-      self.other_fields_hash = other_fields_hash.symbolize_keys
+      self.other_fields_hash = other_fields_hash
 
       other_fields_hash.keys.each { |name| new_field(name) }
     end
