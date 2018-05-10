@@ -7,6 +7,7 @@ require "active_support/core_ext/object/inclusion"
 # open_api/*
 require "open_api/equatable_as_content"
 require "open_api/version"
+require "open_api/data_types"
 
 # Models
 require "open_api/specification"
