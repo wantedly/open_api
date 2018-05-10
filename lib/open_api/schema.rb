@@ -54,7 +54,7 @@ module OpenApi
           when :items then v.serializable_hash
           when :properties then v.map { |k, v| [k.to_s, v.serializable_hash] }.to_h
           else
-            v
+            v.to_s
           end
         [k.to_s, value]
       }.to_h
