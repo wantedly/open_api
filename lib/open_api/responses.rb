@@ -10,7 +10,7 @@ module OpenApi
       self.responses_hash = responses_hash.with_indifferent_access
     end
 
-    def_delegator :responses_hash, :[]
+    def_delegators :responses_hash, :[], :[]=
 
     def serializable_hash
       {

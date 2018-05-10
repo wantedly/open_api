@@ -8,7 +8,7 @@ module OpenApi
       self.path_hash = path_hash.with_indifferent_access
     end
 
-    def_delegator :path_hash, :[]
+    def_delegators :path_hash, :[], :[]=
 
     def self.load(hash)
       hash = hash.map { |k, v| [k.to_sym, PathItem.load(v)] }.to_h
