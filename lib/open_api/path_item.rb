@@ -13,7 +13,7 @@ module OpenApi
       self.description = description
       self.servers = servers
       self.parameters = parameters
-      self.operations = operations.with_indifferent_access
+      self.operations = operations.map { |k, v| [k.to_s.underscore.to_sym, v] }.to_h
     end
 
     def serializable_hash
@@ -23,7 +23,7 @@ module OpenApi
         "description" => description&.to_s,
         "servers" => servers&.map(&:serializable_hash),
         "parameters" => parameters&.map(&:serializable_hash),
-      }.merge(operations.map { |k, v| [k.to_s, v.serializable_hash] }.to_h)
+      }.merge(operations.map { |k, v| [k.to_s.underscore, v.serializable_hash] }.to_h)
        .compact
     end
 
