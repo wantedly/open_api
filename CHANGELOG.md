@@ -1,3 +1,6 @@
+## 0.3.1
+* Keep hash keys to be string
+
 ## 0.3.0
 * Add `#serializable_hash` to Components
 * Allow Paths and Responses to set like a hash
