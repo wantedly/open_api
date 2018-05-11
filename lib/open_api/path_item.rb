@@ -13,7 +13,7 @@ module OpenApi
       self.description = description
       self.servers = servers
       self.parameters = parameters
-      self.operations = operations.map { |k, v| [k.to_s.underscore.to_sym, v] }.to_h
+      self.operations = operations.map { |k, v| [k.to_s.underscore, v] }.to_h
     end
 
     def serializable_hash
