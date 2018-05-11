@@ -16,6 +16,20 @@ module OpenApi
       self.callbacks = callbacks
     end
 
+    def serializable_hash
+      {
+        "schemas" => schemas&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_h,
+        "responses" => responses&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_h,
+        "parameters" => parameters&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_h,
+        "examples" => examples&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_h,
+        "requestBodies" => request_bodies&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_h,
+        "headers" => headers&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_h,
+        "securitySchemes" => security_schemes&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_h,
+        "links" => links&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_h,
+        "callbacks" => callbacks&.map { |k, v| [k.to_s, v.serializable_hash] }&.to_h,
+      }.compact
+    end
+
     def self.load(hash)
       return unless hash
 

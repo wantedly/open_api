@@ -128,4 +128,97 @@ RSpec.describe OpenApi::Components do
       )
     end
   end
+
+  describe "#serializable_hash" do
+    subject { components.serializable_hash }
+
+    let(:components) do
+      described_class.new(
+        schemas: {
+          "Pet" => schema,
+        },
+        responses: {
+          "get_pet" => response,
+        },
+        parameters: {
+          "pet_parameter" => parameter,
+        },
+        request_bodies: {
+          "pet_body" => request_body,
+        },
+        headers: {
+          "page" => header,
+        },
+        security_schemes: {
+          "basic" => security_scheme,
+        },
+        links: {
+          "next_page" => link,
+        },
+        callbacks: {
+          "success" => callback,
+        }
+      )
+    end
+    # Objects
+    let(:schema) { double(:schema) }
+    let(:response) { double(:response) }
+    let(:parameter) { double(:parameter) }
+    let(:request_body) { double(:request_body) }
+    let(:header) { double(:header) }
+    let(:security_scheme) { double(:security_scheme) }
+    let(:link) { double(:link) }
+    let(:callback) { double(:callback) }
+    # Hashes
+    let(:schema_hash) { double(:hash) }
+    let(:response_hash) { double(:hash) }
+    let(:parameter_hash) { double(:hash) }
+    let(:request_body_hash) { double(:hash) }
+    let(:header_hash) { double(:hash) }
+    let(:security_scheme_hash) { double(:hash) }
+    let(:link_hash) { double(:hash) }
+    let(:callback_hash) { double(:hash) }
+
+    before do
+      allow(schema).to receive(:serializable_hash).and_return(schema_hash)
+      allow(response).to receive(:serializable_hash).and_return(response_hash)
+      allow(parameter).to receive(:serializable_hash).and_return(parameter_hash)
+      allow(request_body).to receive(:serializable_hash).and_return(request_body_hash)
+      allow(header).to receive(:serializable_hash).and_return(header_hash)
+      allow(security_scheme).to receive(:serializable_hash).and_return(security_scheme_hash)
+      allow(link).to receive(:serializable_hash).and_return(link_hash)
+      allow(callback).to receive(:serializable_hash).and_return(callback_hash)
+    end
+
+    it "creates seializable hash" do
+      is_expected.to eq(
+        {
+          "schemas" => {
+            "Pet" => schema_hash,
+          },
+          "responses" => {
+            "get_pet" => response_hash,
+          },
+          "parameters" => {
+            "pet_parameter" => parameter_hash,
+          },
+          "requestBodies" => {
+            "pet_body" => request_body_hash,
+          },
+          "headers" => {
+            "page" => header_hash,
+          },
+          "securitySchemes" => {
+            "basic" => security_scheme_hash,
+          },
+          "links" => {
+            "next_page" => link_hash,
+          },
+          "callbacks" => {
+            "success" => callback_hash,
+          }
+        }
+      )
+    end
+  end
 end
