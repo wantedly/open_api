@@ -1,3 +1,6 @@
+## 0.3.2
+* Follow nil case of extra fields in Schema
+
 ## 0.3.1
 * Keep hash keys to be string
 
