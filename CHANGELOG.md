@@ -1,5 +1,11 @@
-## 0.3.2
+## Unreleased
+
+
+## 0.3.3
 * Follow nil case of extra fields in Schema
+
+## 0.3.2
+* Fix minor bug
 
 ## 0.3.1
 * Keep hash keys to be string
