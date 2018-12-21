@@ -104,6 +104,74 @@ RSpec.describe OpenApi::Schema do
     end
   end
 
+  describe "#serializable_hash" do
+    subject { schema.serializable_hash }
+
+    context "when default schema" do
+      let(:schema) do
+        described_class.new(
+          nullable: true,
+          type: :object,
+          properties: {
+            title: {
+              type: :string,
+            }
+          },
+        )
+      end
+  
+      it 'returns serializable hash' do
+        is_expected.to eq(
+          {
+            "nullable" => true,
+            "type" => "object",
+            "properties" => {
+              "title" => {
+                "type" => "string"
+              }
+            }
+          }
+        )
+      end
+    end
+
+    context "when included allOf property schema" do
+      let(:schema) do
+        described_class.new(
+          nullable: true,
+          allOf: [
+            reference1,
+            reference2,
+          ]
+        )
+      end
+
+      # Hashes
+      let(:reference_hash1) { {'$ref' => '#/hoge/hoge'} }
+      let(:reference_hash2) { {'$ref' => '#/fuga/fuga'} }
+      # Objects
+      let(:reference1) { OpenApi::Reference.new(ref: '#/hoge/hoge') }
+      let(:reference2) { OpenApi::Reference.new(ref: '#/fuga/fuga') }
+
+      before do
+        allow(reference1).to receive(:serializable_hash).and_return(reference_hash1)
+        allow(reference2).to receive(:serializable_hash).and_return(reference_hash2)
+      end
+
+      it "returns serializable hash" do
+        is_expected.to eq(
+          {
+            "nullable" => true,
+            "allOf" => [
+              reference_hash1,
+              reference_hash2
+            ]
+          }
+        )
+      end
+    end
+  end
+
   describe ".load" do
     subject { described_class.load(hash) }
 
