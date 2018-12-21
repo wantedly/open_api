@@ -1,5 +1,7 @@
 ## Unreleased
 
+## 0.3.4
+* Fix to use array object for "propaties" of Schema
 
 ## 0.3.3
 * Follow nil case of extra fields in Schema
