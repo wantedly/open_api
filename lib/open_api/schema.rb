@@ -52,10 +52,7 @@ module OpenApi
         value =
           case k.to_sym
           when :items then v.serializable_hash
-          when :properties then 
-            v.map do |k, v|
-              [k.to_s, v.try(:serializable_hash) || v.map { |_k, _v| [_k.to_s, _v&.to_s] }.to_h] 
-            end.to_h
+          when :properties then v.map { |k, v| [k.to_s, v.serializable_hash] }.to_h
           else
             v.is_a?(Array) ? v.map { |_v| _v.try(:serializable_hash) || _v&.to_s } : v&.to_s
           end

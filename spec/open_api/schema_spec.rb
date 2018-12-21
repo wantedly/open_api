@@ -113,9 +113,7 @@ RSpec.describe OpenApi::Schema do
           nullable: true,
           type: :object,
           properties: {
-            title: {
-              type: :string,
-            }
+            title: OpenApi::Schema.new(type: "object")
           },
         )
       end
@@ -127,7 +125,7 @@ RSpec.describe OpenApi::Schema do
             "type" => "object",
             "properties" => {
               "title" => {
-                "type" => "string"
+                "type" => "object"
               }
             }
           }
