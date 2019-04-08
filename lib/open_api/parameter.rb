@@ -45,6 +45,18 @@ module OpenApi
       )
     end
 
+    def serializable_hash
+      {
+        "name" => name.to_s,
+        "in" => self.in.to_s,
+        "required" => required,
+        "deprecated" => deprecated,
+        "allow_empty_value" => allow_empty_value,
+      }.merge(
+        other_fields_hash.map{|k,v| [k.to_s, v.serializable_hash] }.to_h
+      ).compact
+    end
+
     private
 
     attr_accessor :other_fields_hash
