@@ -1,5 +1,7 @@
 ## Unreleased
 
+- Allow using with rails 6
+
 ## 0.3.4
 * Fix to use array object for "propaties" of Schema
 
