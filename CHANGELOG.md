@@ -1,5 +1,7 @@
 ## Unreleased
 
+
+## 0.5.0
 - Allow using with rails 6
 
 ## 0.3.4
