@@ -22,8 +22,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "activesupport", ['>= 5.0', '< 6.2']
-  spec.add_development_dependency "bundler", "~> 2.1.4"
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "bundler", "~> 2.0"
+  spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "pry"
   # Pin to 1.17 due to https://github.com/codeclimate/test-reporter/issues/413
