@@ -3,7 +3,7 @@ module OpenApi
   class Callback
     extend Forwardable
 
-    def initialize(**hash)
+    def initialize(hash)
       self.hash = hash.with_indifferent_access
     end
 
@@ -12,7 +12,7 @@ module OpenApi
     def self.load(hash)
       return unless hash
 
-      new(**hash.symbolize_keys)
+      new(hash.symbolize_keys)
     end
 
     private
