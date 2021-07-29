@@ -4,7 +4,7 @@ module OpenApi
     extend Forwardable
     prepend EquatableAsContent
 
-    def initialize(**path_hash)
+    def initialize(path_hash)
       self.path_hash = path_hash.with_indifferent_access
     end
 
@@ -12,7 +12,7 @@ module OpenApi
 
     def self.load(hash)
       hash = hash.map { |k, v| [k.to_sym, PathItem.load(v)] }.to_h
-      new(**hash)
+      new(hash)
     end
 
     def serializable_hash
