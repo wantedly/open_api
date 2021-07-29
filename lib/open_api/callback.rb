@@ -3,7 +3,7 @@ module OpenApi
   class Callback
     extend Forwardable
 
-    def initialize(hash)
+    def initialize(hash = {})
       self.hash = hash.with_indifferent_access
     end
 

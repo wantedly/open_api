@@ -1,6 +1,7 @@
 RSpec.describe OpenApi::Callback do
   it "creates an instance" do
     path_item = double(:path_item)
+    expect(described_class.new).to be_a(described_class)
     expect(
       described_class.new(
         {

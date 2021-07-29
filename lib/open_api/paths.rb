@@ -4,7 +4,7 @@ module OpenApi
     extend Forwardable
     prepend EquatableAsContent
 
-    def initialize(path_hash)
+    def initialize(path_hash = {})
       self.path_hash = path_hash.with_indifferent_access
     end
 
