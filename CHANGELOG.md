@@ -1,6 +1,8 @@
 ## Unreleased
 
-
+## 0.6.0
+- Supported Ruby 3.0 by fixing keyword parameters
+- Relaxed the version constraint on Rails
 ## 0.5.0
 - Allow using with rails 6
 
