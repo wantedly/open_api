@@ -1,0 +1,25 @@
+name: test
+on: [push, pull_request]
+jobs:
+  test:
+    strategy:
+      matrix:
+        ruby: ["2.4", "2.5"]
+        gemfile: [Gemfile]
+
+    env:
+      BUNDLE_GEMFILE: "${{ matrix.gemfile }}"
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
+        bundler: 2.1.4 # TODO: remove it later
+    - run: bundle exec rake
+    - name: Send coverage
+      uses: paambaati/codeclimate-action@v2.7.5
+      env:
+        CC_TEST_REPORTER_ID: 618e64226e212a5824797037cb1a71487cdbfb3aa664bddc42a7189fb027f73a
