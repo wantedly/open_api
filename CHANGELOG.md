@@ -1,5 +1,7 @@
 ## Unreleased
 
+## 0.6.1
+- Fix `Paths` initializer to enable to take no args
 ## 0.6.0
 - Supported Ruby 3.0 by fixing keyword parameters
 - Relaxed the version constraint on Rails
