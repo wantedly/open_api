@@ -2,6 +2,7 @@ RSpec.describe OpenApi::Paths do
   let(:path) { double(:path) }
 
   it "creates instance" do
+    expect(described_class.new).to be_a(described_class)
     expect(described_class.new("/books": path)).to be_a(described_class)
     expect(described_class.new({"/books": path})).to be_a(described_class)
   end
