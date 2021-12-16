@@ -8,6 +8,8 @@ jobs:
         gemfile: [Gemfile]
         include:
           - ruby: "2.7"
+            gemfile: "gemfiles/rails-6.1.gemfile"
+          - ruby: "2.7"
             gemfile: "gemfiles/rails-6.0.gemfile"
           - ruby: "2.6"
             gemfile: "gemfiles/rails-5.2.gemfile"
