@@ -1,5 +1,7 @@
 ## Unreleased
 
+- Reflect ownership transfer https://github.com/wantedly/open_api/pull/16
+
 ## 0.6.1
 - Fix `Paths` initializer to enable to take no args
 ## 0.6.0
