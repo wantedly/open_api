@@ -6,12 +6,12 @@ require "open_api/version"
 Gem::Specification.new do |spec|
   spec.name          = "open_api"
   spec.version       = OpenApi::VERSION
-  spec.authors       = ["Kent Nagata"]
-  spec.email         = ["ngtknt@me.com"]
+  spec.authors       = ["Kent Nagata", "Wantedly, Inc."]
+  spec.email         = ["ngtknt@me.com", "dev@wantedly.com"]
 
   spec.summary       = "Provide PORO of OpenAPI specification"
   spec.description   = "It provides PORO of OpenAPI specification. It only support OpenAPI v3."
-  spec.homepage      = "https://github.com/ngtk/open_api"
+  spec.homepage      = "https://github.com/wantedly/open_api"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
