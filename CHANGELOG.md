@@ -1,6 +1,11 @@
 ## Unreleased
 
+## 0.6.2
+
 - Reflect ownership transfer https://github.com/wantedly/open_api/pull/16
+- Bump Ruby and Rails https://github.com/wantedly/open_api/pull/17
+  - Supported Rubies: 3.0, 3.1, 3.2
+  - Supported Rails: 6.1, 7.0, 7.1
 
 ## 0.6.1
 - Fix `Paths` initializer to enable to take no args
