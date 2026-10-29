@@ -1,5 +1,11 @@
 ## Unreleased
 
+## 0.6.3
+
+- Bump Ruby and Rails
+  - Supported Rubies: 3.3, 3.4, 4.0
+  - Supported Rails: 7.0, 7.1, 7.2, 8.0, 8.1
+
 ## 0.6.2
 
 - Reflect ownership transfer https://github.com/wantedly/open_api/pull/16
