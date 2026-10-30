@@ -1,6 +1,14 @@
+require "open3"
+
 RSpec.describe OpenApi do
   it "has a version number" do
     expect(OpenApi::VERSION).not_to be nil
+  end
+
+  it "can be required without other libraries loaded beforehand" do
+    lib = File.expand_path("../lib", __dir__)
+    output, status = Open3.capture2e(RbConfig.ruby, "-rbundler/setup", "-I", lib, "-e", 'require "open_api"')
+    expect(status).to be_success, output
   end
 
   it "creates simple spec" do

@@ -1,5 +1,12 @@
 ## Unreleased
 
+## 0.6.3
+
+- Require `forwardable` explicitly to fix `NameError: uninitialized constant OpenApi::Paths::Forwardable` when nothing has loaded it beforehand (e.g. `require "open_api"` right after `require "rails"` on Ruby 3.3+, whose psych no longer loads it) https://github.com/wantedly/open_api/pull/18
+- Bump Ruby and Rails https://github.com/wantedly/open_api/pull/18
+  - Supported Rubies: 3.3, 3.4, 4.0
+  - Supported Rails: 7.0, 7.1, 7.2, 8.0, 8.1
+
 ## 0.6.2
 
 - Reflect ownership transfer https://github.com/wantedly/open_api/pull/16
