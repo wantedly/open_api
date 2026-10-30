@@ -2,7 +2,7 @@
 
 ## 0.6.3
 
-- Bump Ruby and Rails
+- Bump Ruby and Rails https://github.com/wantedly/open_api/pull/18
   - Supported Rubies: 3.3, 3.4, 4.0
   - Supported Rails: 7.0, 7.1, 7.2, 8.0, 8.1
 
