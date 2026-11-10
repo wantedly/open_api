@@ -1,4 +1,5 @@
 # Dependant libraries
+require "forwardable"
 require "active_support"
 require "active_support/core_ext/hash"
 require "active_support/core_ext/string/inflections"
